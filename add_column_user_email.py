@@ -1,3 +1,10 @@
+"""
+HOTWORX Database Migration Script
+This script attempts to add a new column `user_email` to the `bookings` table.
+It supports extended functionality such as tracking bookings per user.
+This should only be run once during database setup or migration.
+"""
+
 import sqlite3
 
 # Connect to your bookings database
