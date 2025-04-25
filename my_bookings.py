@@ -1,3 +1,12 @@
+"""
+HOTWORX Booking Management Screen
+This module displays a user's booked sessions in a scrollable list and allows them to cancel bookings.
+Features include:
+- Integration with the bookings database
+- Cancel booking functionality
+- Help Center and branding
+"""
+
 import tkinter as tk
 from db import get_all_bookings, cancel_booking
 from PIL import Image, ImageTk
@@ -60,6 +69,9 @@ def show_bookings_screen(user_email):
 
     refresh()
 
+    tk.Button(win, text="Close", command=win.destroy, bg="#ff7f50", fg="white", width=15).pack(pady=20)
+
+    win.mainloop()
     tk.Button(win, text="Close", command=win.destroy, bg="#ff7f50", fg="white", width=15).pack(pady=20)
 
     win.mainloop()
