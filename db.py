@@ -1,9 +1,17 @@
+"""
+HOTWORX Database Management Module
+This module handles all database operations for the HOTWORX application, including:
+- User registration and authentication
+- Booking creation and retrieval
+- Booking cancellation
+"""
+
 import sqlite3
 
-conn = sqlite3.connect("hotworx_users.db")
-cursor = conn.cursor()
+conn = sqlite3.connect("hotworx_users.db") # Connect to your bookings database
+cursor = conn.cursor() # Create a cursor object
 
-# ✅ UPDATED: includes user_email
+# ✅ UPDATED: includes user_email and this will be used to filter bookings
 def book_session(workout, date, time, sauna, user_email):
     cursor.execute(
         "INSERT INTO bookings (workout_name, date, time_slot, sauna_number, user_email) VALUES (?, ?, ?, ?, ?)",
@@ -75,7 +83,7 @@ def cancel_booking(booking_id):
 # Fetch all bookings
 def get_all_bookings(user_email):  # 🔧 accepts email
     cursor.execute(
-        "SELECT id, workout, date, time_slot, sauna_number FROM bookings WHERE user_email = ?",
+        "SELECT id, workout_name, date, time_slot, sauna_number FROM bookings WHERE user_email = ?",
         (user_email,)
     )
     return cursor.fetchall()
