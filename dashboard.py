@@ -8,7 +8,7 @@ This class-based module renders the main dashboard after user login. It allows t
 - Open Help Center
 """
 
-import tkinter as tk
+import tkinter as tk 
 from tkcalendar import Calendar
 from datetime import datetime, timedelta
 from timeslot import open_time_slot_screen
@@ -17,13 +17,13 @@ from help_center import open_help_center
 from my_bookings import show_bookings_screen
 
 # Simulated workouts
-workouts = [
+workouts = [ # List of workouts and descriptions, this will show up in the dashboard
     {"name": "Hot Core", "description": "Core strength in infrared heat."},
     {"name": "Hot Cycle", "description": "Cardio and sweat session."},
     {"name": "Hot Pilates", "description": "Infrared-enhanced pilates."}
 ]
 
-class Dashboard:
+class Dashboard: #this is the main dashboard class that will be used to show the dashboard after login
     def __init__(self, user_full_name, user_email):
         self.user_full_name = user_full_name
         self.user_email = user_email
@@ -35,7 +35,7 @@ class Dashboard:
         self.setup_ui()
         self.window.mainloop()
 
-    def setup_ui(self):
+    def setup_ui(self): #this function sets up the UI for the dashboard
         # Logo
         logo_raw = Image.open("hotworx_logo.png").resize((150, 60))
         self.logo = ImageTk.PhotoImage(logo_raw, master=self.window)
@@ -77,7 +77,7 @@ class Dashboard:
     def select_workout(self, workout):
         selected_date = self.cal.get_date()
         self.window.destroy()
-        open_time_slot_screen(workout["name"], selected_date, self.user_email)
+        open_time_slot_screen(workout["name"], selected_date, self.user_email, self.user_full_name)
 
 
 def open_dashboard(user_full_name, user_email):
