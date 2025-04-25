@@ -31,10 +31,11 @@ fixed_slots = [
 ]
 
 class TimeSlotScreen:
-    def __init__(self, workout_name, selected_date, user_email):
+    def __init__(self, workout_name, selected_date, user_email, user_full_name):
         self.workout_name = workout_name
         self.selected_date = selected_date
         self.user_email = user_email
+        self.user_full_name = user_full_name
         self.conn = sqlite3.connect('hotworx_users.db')
         self.cursor = self.conn.cursor()
 
@@ -104,11 +105,11 @@ class TimeSlotScreen:
         # Book it
         book_session(self.workout_name, self.selected_date, slot["time"], slot["sauna"], self.user_email)
         self.win.destroy()
-        show_confirmation_screen(self.workout_name, self.selected_date, slot["time"], slot["sauna"], self.user_email)
+        show_confirmation_screen(self.workout_name, self.selected_date, slot["time"], slot["sauna"], self.user_full_name, self.user_email)
 
 
-def open_time_slot_screen(workout_name, selected_date, user_email):
-    TimeSlotScreen(workout_name, selected_date, user_email)
+def open_time_slot_screen(workout_name, selected_date, user_email, user_full_name):
+    TimeSlotScreen(workout_name, selected_date, user_email, user_full_name)
 
 # For testing only
 # open_time_slot_screen("Hot Core", "2025-04-20", "test@example.com")
